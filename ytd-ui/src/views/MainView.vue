@@ -117,6 +117,9 @@ export default {
     embeddedUrl() {
       return "https://youtube.com/embed/" + this.id;
     },
+    baseUrl() {
+      return process.env.VUE_APP_API_URL
+    }
   },
   methods: {
     getVideoMetadata(e) {
@@ -125,8 +128,8 @@ export default {
       pastedData = clipboardData.getData("Text");
 
       //var sendUrl = "http://localhost:5000/Metadata?url=" + pastedData;
-      var sendUrl = "http://ytdapi.victorh18.info/Metadata";
-      console.log(this.dataType);
+      var sendUrl = this.baseUrl + "/Metadata";
+      console.log(process.env);
 
       const request = {
         method: "get",
