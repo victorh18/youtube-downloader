@@ -17,6 +17,7 @@
               height="100%"
               class="d-flex flex-column align-center pt-4"
               id="lol"
+
             >
               <v-flex
                 class="d-flex flex-column align-self-stretch px-16 pb-8"
@@ -26,7 +27,7 @@
                   color="#E5E5E5"
                   width="100%"
                   height="100%"
-                  class="mb-6 align-center d-flex justify-center"
+                  class="mb-2 align-center d-flex justify-center"
                 >
                   <iframe
                     width="60%"
@@ -38,7 +39,30 @@
                     allowfullscreen
                   ></iframe>
                 </v-sheet>
-                <v-flex class="d-flex justify-end">
+                <v-flex class="d-flex">
+                  <!-- <div class="align-self-center mb-0 mr-2">Nombre del archivo:</div> -->
+                  <v-radio-group row
+                    solo
+                    dense
+                    hide-details="true"
+                    class="mt-0 align-center"
+                    mandatory
+                  >
+                  <template v-slot:label>
+                    <div class="align-self-center mb-0 mr-2">Nombre del archivo:</div>
+                  </template>
+                    <v-radio :key=1 :label="'Título'" 
+                    solo
+                    dense
+                    hide-details="true"
+                    />
+                    <v-radio :key=1 :label="'Título - Usuario subida'"
+                    solo
+                    dense
+                    hide-details="true"
+                     />
+                  </v-radio-group>
+                  <v-spacer></v-spacer>
                   <v-select
                     :items="fileTypes"
                     item-text="text"
@@ -57,12 +81,12 @@
                   <!-- <v-btn>audio</v-btn> -->
                   <v-btn
                     color="primary"
-                    class="align-self-end"
                     @click="download(url)"
                     :loading="waitingFile"
                     :disabled="waitingFile"
                     >Descargar</v-btn
                   >
+                  
                 </v-flex>
               </v-flex>
             </v-sheet>
