@@ -4,90 +4,7 @@
       <v-flex style="height: 100%" class="pa-3">
         <p class="my-0">Link del vídeo:</p>
         <v-text-field v-model="url" solo dense @paste="getVideoMetadata" />
-        <v-flex class="d-flex flex-column" fill-height v-if="url">
-          <v-flex class="d-flex justify-center" fill-height>
-            <v-sheet
-              elevation="5"
-              width="100%"
-              height="100%"
-              class="d-flex flex-column align-center pt-4"
-              id="lol"
-
-            >
-              <v-flex
-                class="d-flex flex-column align-self-stretch px-16 pb-8"
-                fill-height
-              >
-                <v-sheet
-                  color="#E5E5E5"
-                  width="100%"
-                  height="100%"
-                  class="mb-2 align-center d-flex justify-center"
-                >
-                  <iframe
-                    width="60%"
-                    height="100%"
-                    :src="embeddedUrl"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
-                </v-sheet>
-                <v-flex class="d-flex">
-                  <!-- <div class="align-self-center mb-0 mr-2">Nombre del archivo:</div> -->
-                  <v-radio-group row
-                    solo
-                    dense
-                    hide-details="true"
-                    class="mt-0 align-center"
-                    mandatory
-                    v-model="filenamePattern"
-                  >
-                  <template v-slot:label>
-                    <div class="align-self-center mb-0 mr-2">Nombre del archivo:</div>
-                  </template>
-                    <v-radio value="justTitle" :label="'Título'" 
-                    solo
-                    dense
-                    hide-details="true"
-                    />
-                    <v-radio value="uploaderTitle" :label="'Usuario Subida - Título'"
-                    solo
-                    dense
-                    hide-details="true"
-                     />
-                  </v-radio-group>
-                  <v-spacer></v-spacer>
-                  <v-select
-                    :items="fileTypes"
-                    item-text="text"
-                    item-value="fileType"
-                    label="Tipo"
-                    solo
-                    dense
-                    hide-details="true"
-                    cols="auto"
-                    style="max-width: 15%"
-                    class="mr-4"
-                    background-color="#E5E5E5"
-                    v-model="dataType"
-                  >
-                  </v-select>
-                  <!-- <v-btn>audio</v-btn> -->
-                  <v-btn
-                    color="primary"
-                    @click="download(url)"
-                    :loading="waitingFile"
-                    :disabled="waitingFile"
-                    >Descargar</v-btn
-                  >
-                  
-                </v-flex>
-              </v-flex>
-            </v-sheet>
-          </v-flex>
-        </v-flex>
+        <video-part :embeddedUrl="embeddedUrl" v-if="url"/>
       </v-flex>
     </v-container>
   </v-content>
@@ -95,8 +12,12 @@
 
 <script>
 import axios from "axios";
+import VideoPart from "../components/VideoPart.vue";
 
 export default {
+  components: {
+    VideoPart
+  },
   data() {
     return {
       fileTypes: [
@@ -123,8 +44,6 @@ export default {
       var clipboardData, pastedData;
       clipboardData = e.clipboardData || window.clipboardData;
       pastedData = clipboardData.getData("Text");
-
-      //var sendUrl = "http://localhost:5000/Metadata?url=" + pastedData;
       var sendUrl = this.baseUrl + "/Metadata";
       console.log(process.env);
 
@@ -172,11 +91,6 @@ export default {
           link.click();
           URL.revokeObjectURL(link.href);
           this.waitingFile = false;
-          //
-          // let filename = response.headers["x-filename"];
-          // const Fs = require('fs');
-          // Fs.createWriteStream(filename);
-          // response.data.
         })
         .catch((err) => console.log(err));
     },
