@@ -3,12 +3,7 @@
     <v-container style="border: black 0px solid; height: 70vh">
       <v-flex style="height: 100%" class="pa-3">
         <p class="my-0">Link del vídeo:</p>
-        <v-text-field
-          v-model="url"
-          solo
-          dense
-          @paste="getVideoMetadata"
-        ></v-text-field>
+        <v-text-field v-model="url" solo dense @paste="getVideoMetadata" />
         <v-flex class="d-flex flex-column" fill-height v-if="url">
           <v-flex class="d-flex justify-center" fill-height>
             <v-sheet
@@ -47,16 +42,17 @@
                     hide-details="true"
                     class="mt-0 align-center"
                     mandatory
+                    v-model="filenamePattern"
                   >
                   <template v-slot:label>
                     <div class="align-self-center mb-0 mr-2">Nombre del archivo:</div>
                   </template>
-                    <v-radio :key=1 :label="'Título'" 
+                    <v-radio value="justTitle" :label="'Título'" 
                     solo
                     dense
                     hide-details="true"
                     />
-                    <v-radio :key=1 :label="'Título - Usuario subida'"
+                    <v-radio value="uploaderTitle" :label="'Usuario Subida - Título'"
                     solo
                     dense
                     hide-details="true"
@@ -110,6 +106,7 @@ export default {
       id: "",
       url: "",
       dataType: "mp3",
+      filenamePattern: "",
       waitingFile: false
     };
   },
@@ -153,11 +150,12 @@ export default {
     download(url) {
       const request = {
         method: "get",
-        url: "http://ytdapi.victorh18.info/Download",
+        url: this.baseUrl + "/Download",
         responseType: 'blob',
         params: {
           url: url,
-          format: this.dataType
+          format: this.dataType,
+          filenameFormat: this.filenamePattern
         }
       };
       this.waitingFile = true;

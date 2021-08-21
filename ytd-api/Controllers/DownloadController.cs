@@ -17,10 +17,11 @@ namespace ytd_api.Controllers
     {
 
         [HttpGet]
-        public IActionResult Download(string url, string format = "mp4")
+        public IActionResult Download(string url, string format = "mp4", string filenameFormat = "uploaderTitle")
         {
             var yd = new YoutubeDL();
             string fileFormat = "";
+            string filenamePattern = "";
 
             switch (format)
             {
@@ -37,12 +38,25 @@ namespace ytd_api.Controllers
                 default:
                     break; 
             }
+
+            switch (filenameFormat)
+            {
+                case "justTitle":
+                    filenamePattern = "%(title)s.%(ext)s";
+                    break;
+                case "uploaderTitle":
+                    filenamePattern = "%(uploader)s-%(title)s.%(ext)s";
+                    break;
+                default:
+                    break;
+            }
             
             var filePrefix = DateTime.Now.ToString("yyyymmss_hhMMss");
             var fileRoot = Path.Combine(AppContext.BaseDirectory, filePrefix);
             var filePath = fileRoot + fileFormat;
             
-            yd.Options.FilesystemOptions.Output = fileRoot + "%(title)s.%(ext)s";
+            //yd.Options.FilesystemOptions.Output = fileRoot + "%(title)s.%(ext)s";
+            yd.Options.FilesystemOptions.Output = fileRoot + filenamePattern;
             yd.VideoUrl = url;
             yd.Download();
 
