@@ -4,7 +4,7 @@
       <v-flex style="height: 100%" class="pa-3">
         <p class="my-0">Link del vídeo:</p>
         <v-text-field v-model="url" solo dense @paste="getVideoMetadata" />
-        <video-part :embeddedUrl="embeddedUrl" v-if="url"/>
+        <video-part v-if="url"/>
       </v-flex>
     </v-container>
   </v-content>
@@ -20,9 +20,6 @@ export default {
     VideoPart
   },
   computed: {
-    embeddedUrl() {
-      return this.$store.getters.embeddedUrl;
-    },
     url: {
       get () {
         return this.$store.state.app.url;

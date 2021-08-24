@@ -10,11 +10,10 @@
 
 <script>
 export default {
-    props: {
-        embeddedUrl: {
-            type: String,
-            required: true
-        }
+    computed: {
+        embeddedUrl() {
+            return this.$store.getters.embeddedUrl;
+        },
     }
 }
 </script>

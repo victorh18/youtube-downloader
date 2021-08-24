@@ -3,8 +3,8 @@
         <v-flex class="d-flex justify-center" fill-height>
         <v-sheet elevation="5" width="100%" height="100%" class="d-flex flex-column align-center pt-4">
             <v-flex fill-height class="d-flex flex-column align-self-stretch px-16 pb-8">
-            <video-frame :embeddedUrl="embeddedUrl" :url="url" />
-            <video-options :url="url" />
+            <video-frame  />
+            <video-options />
             </v-flex>
         </v-sheet>
         </v-flex>
@@ -19,17 +19,6 @@ export default {
     components: {
         VideoFrame,
         VideoOptions
-    },
-    props: {
-        embeddedUrl: {
-            type: String,
-            required: true
-        },
-        url: {
-            type: String,
-            require: true
-        }
     }
-    
 }
 </script>
