@@ -9,7 +9,7 @@
     </v-app-bar>
 
     <v-main class="pa-2" color="background">
-      <main-view/>
+      <main-view />
     </v-main>
   </v-app>
 </template>

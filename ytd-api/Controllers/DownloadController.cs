@@ -63,7 +63,7 @@ namespace ytd_api.Controllers
             //var fileName = Path.GetFileName(filePath);
             var newFilePath = Directory.GetFiles(AppContext.BaseDirectory, filePrefix + "*").First();
             var fileName = Path.GetFileName(newFilePath).Substring(filePrefix.Length);
-            Response.Headers.Add("X-Filename", fileName);
+            Response.Headers.Add("X-Filename", System.Net.WebUtility.UrlEncode(fileName));
             var file = System.IO.File.ReadAllBytes(newFilePath);
             return File(file, "application/octet-stream", fileName);
 

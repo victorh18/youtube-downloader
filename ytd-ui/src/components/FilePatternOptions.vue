@@ -9,14 +9,22 @@
 </template>
 
 <script>
+import * as AppMutations from '../store/app/app-mutations'
 export default {
-    data() {
-        return {
-            filenamePattern: ''
+    // data() {
+    //     return {
+    //         filenamePattern: ''
+    //     }
+    // },
+    computed: {
+        filenamePattern: {
+            get() {
+                return this.$store.state.app.filePattern;
+            },
+            set(value) {
+                this.$store.commit(AppMutations.UPDATE_FILE_PATTERN, { filePattern: value })
+            }
         }
-    },
-    methods: {
-        
     }
 }
 </script>

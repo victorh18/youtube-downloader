@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
-import AppStore from './store/AppStore.js'
+import store from './store/store.js'
 
 Vue.config.productionTip = false
 
 new Vue({
   vuetify,
   render: h => h(App),
-  store: AppStore
+  store: store
 }).$mount('#app')
