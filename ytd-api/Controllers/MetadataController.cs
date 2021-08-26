@@ -22,5 +22,11 @@ namespace ytd_api.Controllers {
                 id = metadataService.getVideoId(url)
             };
         }
+
+        [HttpGet]
+        [Route("ApiVersion")]
+        public string GetVersion() {
+            return metadataService.getApiVersion();
+        }
     }
 }

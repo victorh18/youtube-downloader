@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>ytd_api</RootNamespace>
+    <Version>0.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

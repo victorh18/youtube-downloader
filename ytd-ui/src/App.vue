@@ -8,9 +8,18 @@
       <v-app-bar-title class="font-weight-bold" color="white">Descargador de YouTube</v-app-bar-title>
     </v-app-bar>
 
-    <v-main class="pa-2" color="background">
+    <v-main class="pa-2" color="background" style="overflow-y: auto">
       <main-view />
     </v-main>
+    <v-footer padless height="30">
+    <v-col
+      class="text-right pa-0"
+      cols="12"
+      
+    >
+      {{ 'v' + version }}
+    </v-col>
+  </v-footer>
   </v-app>
 </template>
 
@@ -26,7 +35,7 @@ export default {
   },
 
   data: () => ({
-    //
+    version: process.env.VUE_APP_VERSION
   }),
 };
 </script>

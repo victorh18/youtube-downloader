@@ -1,8 +1,14 @@
 using ytd_api.Services.Interfaces;
+using System.Reflection;
 
 namespace ytd_api.Services.Implementations
 {
     public class MetadataService : IMetadataService {
+        string[] urlPrefixes = {
+            @"https://www.youtube.com/watch?v=",
+            @"https://youtu.be/"
+        };
+
         public MetadataService()
         {
             
@@ -10,16 +16,19 @@ namespace ytd_api.Services.Implementations
 
         public string getVideoId(string videoUrl) {
             string id = "";
-            if (videoUrl.Contains("https://www.youtube.com/watch?v="))
+        
+            foreach (string prefix in urlPrefixes)
             {
-                id = videoUrl.Substring("https://www.youtube.com/watch?v=".Length, videoUrl.Length - "https://www.youtube.com/watch?v=".Length);
+                if (videoUrl.Contains(prefix))
+                {
+                    id = videoUrl.Substring(prefix.Length, videoUrl.Length - prefix.Length); 
+                }
             }
-            if (videoUrl.Contains(@"https://youtu.be/"))
-            {
-                id = videoUrl.Substring(@"https://youtu.be/".Length, videoUrl.Length - @"https://youtu.be/".Length); 
-            }
-
             return id;
+        }
+
+        public string getApiVersion() {
+            return Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
         }
     }
 }
