@@ -4,21 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ytd_api.Services.Interfaces;
 
 namespace ytd_api.Controllers {
     [ApiController]
     [Route("[controller]")]
     public class MetadataController {
+        private readonly IMetadataService metadataService;
+        public MetadataController(IMetadataService _metadataService)
+        {
+            metadataService = _metadataService;
+        }
+
         [HttpGet]
         public object GetMetadata(string url) {
-            string id = "";
-            if (url.Contains("https://www.youtube.com/watch?v="))
-            {
-                id = url.Substring("https://www.youtube.com/watch?v=".Length, url.Length - "https://www.youtube.com/watch?v=".Length);
-            }
-
             return new {
-                id = id
+                id = metadataService.getVideoId(url)
             };
         }
     }

@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ytd_api.Services.Interfaces;
+using ytd_api.Services.Implementations;
 
 namespace ytd_api
 {
@@ -41,6 +43,10 @@ namespace ytd_api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ytd_api", Version = "v1" });
             });
+ 
+            // My services
+            services.AddSingleton<IMetadataService, MetadataService>();
+            services.AddSingleton<IDownloadService, DownloadService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
