@@ -2,7 +2,7 @@
     <v-flex class="d-flex flex-column" fill-height>
         <v-flex class="d-flex justify-center" fill-height>
         <v-sheet elevation="5" width="100%" height="100%" class="d-flex flex-column align-center pt-4">
-            <v-flex fill-height class="d-flex flex-column align-self-stretch px-16 pb-8">
+            <v-flex fill-height class="d-flex flex-column align-self-stretch px-4 px-md-8 pb-8">
             <video-frame  />
             <video-options />
             </v-flex>

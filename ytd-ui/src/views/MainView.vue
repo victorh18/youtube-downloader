@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-container style="border: black 0px solid; height: 70vh">
-      <v-flex style="height: 100%" class="pa-3">
+      <v-flex style="height: 100%" >
         <p class="my-0">Link del vídeo:</p>
         <v-text-field v-model="url" solo dense @paste="getVideoMetadata" />
         <video-part v-if="url"/>

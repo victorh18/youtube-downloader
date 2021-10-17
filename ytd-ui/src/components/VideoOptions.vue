@@ -1,15 +1,31 @@
 <template>
-  <v-flex class="d-flex">
+  <v-flex flex=1 class="d-flex flex-wrap flex-xs-wrap flex-sm-nowrap justify-sm-space-between" style="width: 100%">
     <file-pattern-options />
-    <v-spacer />
-    <v-select
-      :items="fileTypes"  item-text="text"        item-value="fileType" label="Tipo"  solo  dense   hide-details="true" 
-      cols="auto"         style="max-width: 15%"  class="mr-4"          background-color="#E5E5E5"  v-model="fileFormat"
-    >
-    </v-select>
-    <v-btn color="primary" @click="download()" :loading="waitingFile" :disabled="waitingFile">
-      Descargar
-    </v-btn>
+    <span class="d-flex flex-wrap flex-shrink-1 align-end justify-space-between justify-sm-end mt-4 mt-sm-0">
+      <v-select
+        :items="fileTypes"
+        item-text="text"
+        item-value="fileType"
+        label="Tipo"
+        solo
+        dense
+        hide-details="true"
+        cols="auto"
+        style="max-width: 15%; min-width: 125px"
+        class="mr-4"
+        background-color="#E5E5E5"
+        v-model="fileFormat"
+      >
+      </v-select>
+      <v-btn
+        color="primary"
+        @click="download()"
+        :loading="waitingFile"
+        :disabled="waitingFile"
+      >
+        Descargar
+      </v-btn>
+    </span>
   </v-flex>
 </template>
 

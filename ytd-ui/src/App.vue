@@ -8,7 +8,7 @@
       <v-app-bar-title class="font-weight-bold" color="white">Descargador de YouTube</v-app-bar-title>
     </v-app-bar>
 
-    <v-main class="pa-2" color="background" style="overflow-y: auto">
+    <v-main class="pa-2 pa-md-2" color="background" style="overflow-y: auto">
       <main-view />
     </v-main>
     <v-footer padless height="30">

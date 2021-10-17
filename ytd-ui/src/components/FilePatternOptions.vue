@@ -1,7 +1,7 @@
 <template>
-    <v-radio-group row solo dense hide-details="true" class="mt-0 align-center" mandatory v-model="filenamePattern">
+    <v-radio-group :row="!radioDirection" :column="radioDirection" solo dense hide-details="true" class="mt-0 align-center" mandatory v-model="filenamePattern">
         <template v-slot:label>
-            <div class="align-self-center mb-0 mr-2">Nombre del archivo:</div>
+            <div class=" font-weight-medium text-body-2 align-self-center mb-0 mr-2">Nombre del archivo:</div>
         </template>
         <v-radio value="justTitle"     :label="'Título'"                  solo dense hide-details="true" />
         <v-radio value="uploaderTitle" :label="'Usuario Subida - Título'" solo dense hide-details="true" />
@@ -24,6 +24,9 @@ export default {
             set(value) {
                 this.$store.commit(AppMutations.UPDATE_FILE_PATTERN, { filePattern: value })
             }
+        },
+        radioDirection() {
+            return ['md', 'sm', 'xs'].includes(this.$vuetify.breakpoint.name);
         }
     }
 }
