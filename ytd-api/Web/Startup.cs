@@ -11,8 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using ytd_api.Services.Interfaces;
-using ytd_api.Services.Implementations;
+using ytd_api.Core.Interfaces;
+using ytd_api.Core.Services;
+using ytd_api.Infrastructure;
 
 namespace ytd_api
 {
@@ -47,6 +48,7 @@ namespace ytd_api
             // My services
             services.AddSingleton<IMetadataService, MetadataService>();
             services.AddSingleton<IDownloadService, DownloadService>();
+            services.AddSingleton<IYoutubeDownloader, YoutubeDownloader>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ytd_api.Services.Interfaces;
+using ytd_api.Core.Interfaces;
 
 namespace ytd_api.Controllers {
     [ApiController]

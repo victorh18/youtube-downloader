@@ -1,7 +1,7 @@
-using ytd_api.Services.Interfaces;
+using ytd_api.Core.Interfaces;
 using System.Reflection;
 
-namespace ytd_api.Services.Implementations
+namespace ytd_api.Core.Services
 {
     public class MetadataService : IMetadataService {
         string[] urlPrefixes = {

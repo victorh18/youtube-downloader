@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using NYoutubeDL;
 using System.IO;
-using ytd_api.Services.Interfaces;
+using ytd_api.Core.Interfaces;
 
 namespace ytd_api.Controllers
 {
@@ -25,7 +24,7 @@ namespace ytd_api.Controllers
         [HttpGet]
         public IActionResult Download(string url, string format = "mp4", string filenameFormat = "uploaderTitle")
         {
-            var file = downloadService.DownloadVideo(url, format, filenameFormat);
+            var file = downloadService.Download(url, format, filenameFormat);
             Response.Headers.Add("X-Filename", System.Net.WebUtility.UrlEncode(file.Key));
             return File(file.Value, "application/octet-stream", file.Key);
 
